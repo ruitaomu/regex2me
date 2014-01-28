@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="regex2me" default="compile" basedir=".">
+	<description>regex2me</description>
+
+	<property name="Project" value="regex2me" />
+	<property name="Version" value="1.1" />
+
+	<!-- Localizações -->
+	<property name="src" location="src" />
+	<property name="bin" location="bin" />
+	<property name="doc" location="doc" />
+	<property name="dist" location="dist" />
+	<property name="lib" location="lib" />
+
+	 <!-- Onde irá criar o arquivo manifesto -->
+        <property name="manifest" value="MANIFEST.MF" />
+
+        <!-- Manifest -->
+        <target name="manifest">
+                <manifest file="${manifest}">
+                        <attribute name="Built-By" value="${user.name}"/>
+               </manifest>
+        </target>
+
+	
+	<!-- Alvos e tarefas -->
+	<!-- #1 Criar um novo projeto -->
+	<target name="new">
+		<tstamp />
+		<mkdir dir="${src}" />
+		<mkdir dir="${bin}" />
+		<mkdir dir="${doc}" />
+		<mkdir dir="${lib}" />
+		<mkdir dir="${dist}" />
+	</target>
+	
+	<!-- #2 Prepara o inicio de um novo processo de criação -->
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${bin}" />
+		<mkdir dir="${dist}" />
+		<mkdir dir="${lib}" />
+	</target>
+	
+	<!-- #3 Compila -->
+	<target name="compile" depends="init" description="Compila os fontes">
+		<!-- Classpath -->
+		<javac srcdir="${src}" destdir="${bin}" source="1.5" nowarn="on">
+			<classpath>
+				<pathelement path="j2me/midp2.0fcs/classes/"/>
+				<pathelement path="lib"/>
+				<fileset dir="lib">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" description="Cria o pacote">
+		<jar 	jarfile="${dist}/regex2me.jar"
+			basedir="output"
+			manifest="MANIFEST.MF"
+			/>
+	</target>
+	
+	<!-- #5 Faz todos os processo -->
+	<target name="build" depends="compile" description="Faz todos os processo">
+	</target>
+	
+	<!-- #6 Limpa os diretórios de construção -->
+	<target name="clean" description="clean up" >
+		<!-- Delete the ${bin} and ${dist} directory trees -->
+		<delete dir="output"/>
+		<delete dir="${bin}"/>
+		<delete dir="${dist}"/>
+		<delete dir="${inf}"/>
+	</target>
+</project>

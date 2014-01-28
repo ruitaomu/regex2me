@@ -1,0 +1,4 @@
+#!/bin/sh
+
+java -classpath .:j2me/midp2.0fcs/classes/:bin/ lfa.test.Test001
+

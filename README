@@ -1,0 +1,34 @@
+Protótipo de expressões regulares para J2ME
+
+1. Compilar
+
+ $ ant 
+
+ (obs.: necessario o Ant)
+
+2. Preverificar (Não necessária para executar os testes)
+
+ (Necessário baixar o MIDP e o CLDC.)
+ MIDP: java.sun.com/products/midp/
+ CLDC: java.sun.com/products/cldc/
+ 
+ Descompactar ambos na pasta 'j2me'.
+
+ $ ./preverify
+
+ Se nesta faze não ocorrer nenhum erro, o código
+ esta habilitado para ser executado nos aparelhos
+ compatíveis com a tecnologia. Sendo necessário
+ apenas o empacotamento.
+
+3.
+
+ $ ant dist
+
+ Cria o pacote JAR.
+
+4. Executar os testes
+
+ $ test
+
+-Thiago Moretto
